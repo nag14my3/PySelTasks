@@ -1,6 +1,5 @@
 import time
 import datetime
-import unittest
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
@@ -65,8 +64,12 @@ driver.find_element_by_id('name').send_keys("Mythri")
 time.sleep(5)
 driver.find_element_by_id('alertbtn').click()
 time.sleep(5)
-# assertion is required for alert message
 alert = driver.switch_to.alert
+msg = alert.text
+if (msg.find("Mythri")==-1):
+    pass
+else:
+    print("Name is displayed in Alert Message "+ msg)
 alert.accept()
 
 time.sleep(5)
@@ -75,9 +78,13 @@ time.sleep(5)
 
 driver.find_element_by_id('name').send_keys('Mythri')
 driver.find_element_by_id('confirmbtn').click()
-# assertion is required for alert message
 time.sleep(5)
 confirmalert = driver.switch_to.alert
+msg2 = confirmalert.text
+if (msg2.find("Mythri")==-1):
+    pass
+else:
+    print("Name is displayed in Alert Message "+ msg2)
 confirmalert.dismiss()
 
 # This block of code is to verify the new window is switch control to the new window, get the title of the
@@ -134,26 +141,24 @@ print()
 # To handle the web table
 
 rows = len(driver.find_elements_by_xpath('//*[@id="product"]/tbody/tr'))
-print(rows)
 cols = len(driver.find_elements_by_xpath('//*[@id="product"]/tbody/tr[2]/td'))
-print(cols)
-
-String = 'Selenium'
-
+count = 0;
 for r in range(2, rows + 1):
     for c in range(1, cols + 1):
         value = driver.find_element_by_xpath('//*[@id="product"]/tbody/tr[' + str(r) + ']/td[' + str(c) + ']').text
-        if(String in value)== False:
-            break
+        if (value.find("Selenium")) == -1:
+            pass
         else:
+            count=count+1
             print(value, end='  ')
-    print()  # Need to write code for checking selenium substring
-print()
-
+            print()
+print(count)
 
 # to mouse over on Mouse Hover button
 mousehover_button = driver.find_element_by_xpath('/html/body/div[4]/div/fieldset/legend')
 mousehover_button.location_once_scrolled_into_view
+
+time.sleep(5)
 
 driver.find_element_by_id('mousehover').click()
 getlinks = len(driver.find_elements_by_xpath('/html/body/div[4]/div/fieldset/div/div/a'))
@@ -163,6 +168,7 @@ for links in range(1, getlinks + 1):
     print(linksname)
 print()
 
+time.sleep(5)
 # TO Get the total count of iframe/frame/frameset present in current page.
 
 driver.switch_to.frame('iframe-name')
@@ -171,11 +177,10 @@ frame_inside = driver.find_element_by_xpath(
 frame_inside.location_once_scrolled_into_view
 frame_inside.click()
 
+#to get the count of all links in Frame
+
 links_length = len(driver.find_elements_by_xpath('//a'))
 print(links_length)
-
-for a in driver.find_elements_by_xpath('.//a'):
-    print(a.get_attribute('href'))
 
 # to switch control from frame to the window
 driver.switch_to.default_content()
@@ -188,5 +193,10 @@ time.sleep(3)
 # To close all the open windows
 driver.quit()
 
-print("Time taken by the SeleniumAutomation Practice script to exeecute(in seconds):",
-      format(round(time.time() - start),'4'))
+# To print the date an dtime of Selenium Script Execution
+print(datetime.datetime.now())
+
+# To print the Execution time taken by the Script to execute
+end = time.time() - start
+formattedtime = format(end, ".2f")
+print("Time taken by SeleniumAutomationPractice script to execute : ", formattedtime, "seconds")
