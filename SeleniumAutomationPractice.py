@@ -15,10 +15,10 @@ radio_button2 = driver.find_element_by_xpath('//*[@id="radio-btn-example"]/field
 radio_button2.click()
 try:
     assert radio_button2.is_selected()
-    print("Radio Button 2 is selected")
+    print("Radio Button 2 is selected"+"\n")
 except:
-    print("Radio button2 is not selected")
-print()
+    print("Radio button2 is not selected"+"\n")
+
 
 # Code to select Indonesia in Suggestion Class Example which is atuo suggested dropdown
 driver.find_element_by_xpath('//*[@id="autocomplete"]').send_keys("In")
@@ -67,7 +67,7 @@ time.sleep(5)
 alert = driver.switch_to.alert
 msg = alert.text
 if (msg.find("Mythri")==-1):
-    pass
+    raise NameError
 else:
     print("Name is displayed in Alert Message "+ msg)
 alert.accept()
@@ -117,8 +117,8 @@ try:
 except:
     print("Assertion failed")
 
-old_tab = driver.window_handles[0]
-driver.switch_to.window(old_tab)
+#old_tab = driver.window_handles[0]
+driver.switch_to.window(driver.window_handles[0])
 print(driver.title)
 print()
 
@@ -129,9 +129,9 @@ driver.find_element_by_id('hide-textbox').click()
 time.sleep(5)
 driver.find_element_by_id('show-textbox').click()
 time.sleep(5)
-url = driver.find_element_by_id('displayed-text').get_attribute("value")
+name_aftershow = driver.find_element_by_id('displayed-text').get_attribute("value")
 try:
-    assert url == name_enetred
+    assert name_aftershow == name_enetred
     print("The Name entered is equal to name present in the Text box")
 except:
     AssertionError
@@ -150,7 +150,7 @@ for r in range(2, rows + 1):
             pass
         else:
             count=count+1
-            print(value, end='  ')
+            print(value, end = ' ')
             print()
 print(count)
 

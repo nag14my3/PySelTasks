@@ -1,6 +1,6 @@
 import pytest
 
-class TestDemo:
+class Test_Demo:
 
     @pytest.mark.smoke
     def test_pytestMethod1(self):

@@ -35,15 +35,3 @@ def test_cognizant_demo2():
 def test_cognizant_demo3():
     print("Seventh PyTest method is PASSED")
 
-
-@pytest.mark.regression
-def test_pyTestMethod8():
-    print("Eight PYTest Method is PASSED")
-
-
-def test_pyTestMethod9():
-    print("Ninth PYTest Method is PASSED")
-
-
-def test_pyTestMethod10():
-    print("Tenth PYTest Method is PASSED")
