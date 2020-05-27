@@ -1,6 +1,7 @@
 import time
 import datetime
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import Select
 
 start = time.time()  # to note the start of the script time
@@ -160,7 +161,9 @@ mousehover_button.location_once_scrolled_into_view
 
 time.sleep(5)
 
-driver.find_element_by_id('mousehover').click()
+
+actions = ActionChains(driver)
+actions.move_to_element(driver.find_element_by_id('mousehover')).perform()
 getlinks = len(driver.find_elements_by_xpath('/html/body/div[4]/div/fieldset/div/div/a'))
 print("Length of the Mousehover options", getlinks)
 for links in range(1, getlinks + 1):

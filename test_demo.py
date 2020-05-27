@@ -1,5 +1,14 @@
+import logging
+
 import pytest
 
+logging.basicConfig(filename="newfile.log",
+                    format='%(asctime)s,%(msecs)d %(levelname)-8s [%(module)s:%(lineno)d] %(message)s',
+                    filemode='w')
+logger=logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+logger.debug("Project executed properly")
 
 @pytest.mark.smoke
 def test_pytestMethod1():

@@ -9,7 +9,7 @@ logging.info("Assessment1 Script is running")
 
 names_list = []  # creating list to store the names
 
-with open("names.txt", "r") as file1:  # to open names file
+with open("names.txt", "r") as file1:  # to open names file 
 
     names_list = file1.read().replace(" ",
                                       "_").lower().split()  # read the names from the file and coverting it to lowercase
